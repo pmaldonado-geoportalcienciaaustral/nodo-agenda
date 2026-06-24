@@ -348,7 +348,7 @@ try:
     with col_met2:
         st.markdown(f'<div class="custom-metric-box"><div class="custom-metric-label">Total Asistentes</div><div class="custom-metric-value">{total_asistentes} personas</div></div>', unsafe_allow_html=True)
     with col_met3:
-        st.markdown(f'<div class="custom-metric-box"><div class="custom-metric-label">Promedio Asistencia</div><div class="custom-metric-value">{promedio_asistentes} personas por evento</div></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="custom-metric-box"><div class="custom-metric-label">Promedio Asistencia</div><div class="custom-metric-value">{promedio_asistentes} personas</div></div>', unsafe_allow_html=True)
         
     st.markdown("---")
 
@@ -399,12 +399,18 @@ try:
                 asistentes_valor = fila['N asistentes']
                 asistentes_texto = f"{asistentes_valor} personas" if asistentes_valor > 0 else "Sin datos / Por confirmar"
                 
+                # Capturamos el lugar de la fila (si está vacío, muestra 'No indicado')
+                lugar_actividad = fila.get('Lugar', 'No indicado')
+                if pd.isna(lugar_actividad) or str(lugar_actividad).lower() == 'nan' or str(lugar_actividad).strip() == '':
+                    lugar_actividad = 'No indicado'
+
                 st.markdown(
                     f"""
                     <div class="agenda-card">
                         <span class="region-tag"><i class="ri-map-pin-line"></i> {fila.get('Región', 'General')}</span>
                         <h4 style="margin-top: 10px; margin-bottom: 10px; font-weight: 700; letter-spacing: -0.3px;">{fila['Actividad']}</h4>
                         <p style="margin: 4px 0; font-size: 0.95rem; opacity: 0.95;"><i class="ri-time-line"></i> <strong>Horario:</strong> {f_inicio} hrs.</p>
+                        <p style="margin: 4px 0; font-size: 0.95rem; opacity: 0.95;"><i class="ri-map-pin-5-line"></i> <strong>Lugar:</strong> {lugar_actividad}</p>
                         <p style="margin: 4px 0; font-size: 0.95rem; opacity: 0.95;"><i class="ri-shield-line"></i> <strong>Tipo de actividad:</strong> {fila['Descripción'] if fila['Descripción'] else 'Sin especificar'}</p>
                         <p style="margin: 4px 0; font-size: 0.95rem; opacity: 0.95;"><i class="ri-team-line"></i> <strong>Asistentes estimados:</strong> {asistentes_texto}</p>
                     </div>
