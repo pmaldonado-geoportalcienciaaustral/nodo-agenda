@@ -417,7 +417,6 @@ try:
                 # ==========================================
                 link_zoom = str(fila.get('Link reunión', ''))
                 url_invitacion = str(fila.get('URL', ''))
-                link_asistencia = str(fila.get('Lista de asistencia', ''))
                 
                 col_btn1, col_btn2, col_btn3 = st.columns(3)
                 with col_btn1:
@@ -430,11 +429,6 @@ try:
                         st.markdown(f'<a href="{url_invitacion}" target="_blank" style="text-decoration:none;"><button style="width:100%; padding:10px; border-radius:8px; border:none; background-color:var(--primary-color, #22a7e0); color:white; font-weight:600; cursor:pointer;"><i class="ri-external-link-line" style="margin-right:6px;"></i>Enlace Invitación</button></a>', unsafe_allow_html=True)
                     else:
                         st.button("✖ Sin Invitación", disabled=True, use_container_width=True, key=f"i_{idx}")
-                with col_btn3:
-                    if link_asistencia and link_asistencia.lower() != 'nan' and link_asistencia.strip() != '':
-                        st.markdown(f'<a href="{link_asistencia}" target="_blank" style="text-decoration:none;"><button style="width:100%; padding:10px; border-radius:8px; border:none; background-color:var(--primary-color, #22a7e0); color:white; font-weight:600; cursor:pointer;"><i class="ri-file-list-3-line" style="margin-right:6px;"></i>Lista Asistencia</button></a>', unsafe_allow_html=True)
-                    else:
-                        st.button("✖ Sin Registro", disabled=True, use_container_width=True, key=f"a_{idx}")
                 
                 st.markdown("<br>", unsafe_allow_html=True)
         else:
