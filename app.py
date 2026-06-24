@@ -348,7 +348,7 @@ try:
     with col_met2:
         st.markdown(f'<div class="custom-metric-box"><div class="custom-metric-label">Total Asistentes</div><div class="custom-metric-value">{total_asistentes} personas</div></div>', unsafe_allow_html=True)
     with col_met3:
-        st.markdown(f'<div class="custom-metric-box"><div class="custom-metric-label">Promedio Asistencia</div><div class="custom-metric-value">{promedio_asistentes} por evento</div></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="custom-metric-box"><div class="custom-metric-label">Promedio Asistencia</div><div class="custom-metric-value">{promedio_asistentes} personas por evento</div></div>', unsafe_allow_html=True)
         
     st.markdown("---")
 
